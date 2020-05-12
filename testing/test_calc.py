@@ -6,6 +6,9 @@
 # Author  : DanDan Zhao 
 # File    : test_calc_add.py  
 #
+import os
+import sys
+
 import pytest
 import yaml
 from python.calc import Calc
@@ -17,7 +20,8 @@ class TestCalc:
         self.calc = Calc()
         pass
 
-    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/add.yml")))
+    @pytest.mark.add
+    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open(os.getcwd() + "/data/add.yml")))
     def test_add(self, v1, v2, v3):
         print(v1, v2, v3)
         try:
@@ -27,7 +31,8 @@ class TestCalc:
         print(result)
         assert v3 == result
 
-    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/div.yml")))
+    @pytest.mark.div
+    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open(os.getcwd() + "/data/div.yml")))
     def test_div(self, v1, v2, v3):
         # self.calc = Calc()
         try:

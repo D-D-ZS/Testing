@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # type hints 类型提示
+
+
 class Calc:
 
-    def add(self, a: int, b: int):
+    @staticmethod
+    def add(a: int, b: int) -> int:
         return a + b
 
-    def div(self, a: int, b: int):
+    @staticmethod
+    def div(a: int, b: int) -> float:
         return a / b
