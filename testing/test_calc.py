@@ -21,18 +21,19 @@ class TestCalc:
         pass
 
     @pytest.mark.add
-    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open(os.getcwd() + "/data/add.yml")))
+    # @pytest.fail(msg="预期失败", pytrace=True)
+    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/add.yml")))
     def test_add(self, v1, v2, v3):
         print(v1, v2, v3)
         try:
             result = self.calc.add(v1, v2)
+            assert v3 == pytest.approx(result)
         except TypeError as e:
             result = "TypeError"
-        print(result)
-        assert v3 == result
+            assert v3 == result
 
     @pytest.mark.div
-    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open(os.getcwd() + "/data/div.yml")))
+    @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/div.yml")))
     def test_div(self, v1, v2, v3):
         # self.calc = Calc()
         try:
