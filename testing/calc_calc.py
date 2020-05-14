@@ -2,28 +2,33 @@
 # _*_ coding:utf-8 _*_  
 #  
 # Version : 1.0  
-# Time    : 2020/5/10 11:23  
+# Time    : 2020/5/14 11:17  
 # Author  : DanDan Zhao 
-# File    : test_calc_add.py  
-#
+# File    : calc_calc.py  
+# 
 
 import pytest
 import yaml
 from src.calc import Calc
 
 
-class TestCalc:
+@pytest.fixture()
+def init_calc():
+    return Calc
 
-    def setup(self):
-        self.calc = Calc()
-        pass
+
+class CalcCalc:
+    # def setup(self):
+    #     self.calc = Calc()
+    #     pass
 
     # @pytest.mark.add
     @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/add.yml")))
-    def test_add(self, v1, v2, v3):
+    def calc_add(self, v1, v2, v3, init_calc):
+        calc = init_calc()
         print(v1, v2, v3)
         try:
-            result = self.calc.add(v1, v2)
+            result = calc.add(v1, v2)
             assert v3 == pytest.approx(result)
         except TypeError as e:
             result = "TypeError"
@@ -31,10 +36,11 @@ class TestCalc:
 
     # @pytest.mark.div
     @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/div.yml")))
-    def test_div(self, v1, v2, v3):
+    def calc_div(self, v1, v2, v3, init_calc):
         # self.calc = Calc()
+        calc = init_calc()
         try:
-            result = self.calc.div(v1, v2)
+            result = calc.div(v1, v2)
         except Exception as e:
             result = e.__class__.__name__
             assert v3 == result
@@ -43,9 +49,10 @@ class TestCalc:
 
     # @pytest.mark.sub
     @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/sub.yml")))
-    def test_sub(self, v1, v2, v3):
+    def calc_sub(self, v1, v2, v3, init_calc):
+        calc = init_calc()
         try:
-            result = self.calc.sub(v1, v2)
+            result = calc.sub(v1, v2)
         except Exception as e:
             result = e.__class__.__name__
             assert v3 == result
@@ -54,9 +61,10 @@ class TestCalc:
 
     # @pytest.mark.multi
     @pytest.mark.parametrize("v1, v2, v3", yaml.safe_load(open("../data/multi.yml")))
-    def test_multi(self, v1, v2, v3):
+    def calc_multi(self, v1, v2, v3, init_calc):
+        calc = init_calc()
         try:
-            result = self.calc.multi(v1, v2)
+            result = calc.multi(v1, v2)
         except Exception as e:
             result = e.__class__.__name__
             assert v3 == result
@@ -65,4 +73,4 @@ class TestCalc:
 
 
 if __name__ == '__main__':
-    pytest.main()
+    pytest.main("-v")
