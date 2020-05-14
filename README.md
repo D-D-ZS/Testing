@@ -4,12 +4,14 @@
 笔记： NOTE.md
 
 ## 作业2
+作业内容：
 - 补全测试用例【 加减乘除】
 - 使用 fixture 装置完成计算机器实例的初始化
 - 改造 pytest 的运行规则 ,测试用例命名以 calc_开始，【加， 减 ，乘，除】分别为 calc_add, calc_sub，…
 - 自动添加标签(add, sub, mul, div四种)，只运行标签为 add 和 div的测试用例。
 - 封装 add, div 测试步骤到 yaml 文件中
-涉及到的代码文件：
+
+涉及到的文件：
 - src/calc.py 增加减法和乘法 function
 - data/sub.yml 减法测试数据
 - data/multi.yml 乘法测试数据
