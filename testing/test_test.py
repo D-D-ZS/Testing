@@ -16,3 +16,12 @@ def test_needsfiles(tmpdir):
     print(tmpdir)
     print(type(test_needsfiles))
     assert True
+
+
+@pytest.fail(msg="预期失败", pytrace=False)
+def test_demo1():
+    assert 1 == 0
+
+
+if __name__ == '__main__':
+    pytest.main()
