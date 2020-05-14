@@ -12,3 +12,11 @@ class Calc:
     @staticmethod
     def div(a: int, b: int) -> float:
         return a / b
+
+    @staticmethod
+    def sub(a: int, b: int) -> int:
+        return a - b
+
+    @staticmethod
+    def multi(a: int, b: int) -> int:
+        return a * b
