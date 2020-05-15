@@ -11,16 +11,21 @@
 import pytest
 
 
-@pytest.mark.other
-def test_needsfiles(tmpdir):
-    print(tmpdir)
-    print(type(test_needsfiles))
-    assert True
+class TestTest:
+    @staticmethod
+    def setup_class():
+        print("set up")
+        # pytest.skip("NOT implement")
 
+    # @pytest.mark.other
+    def test_needsfiles(self, tmpdir):
+        print(tmpdir)
+        print(type(self.test_needsfiles))
+        assert True
 
-@pytest.fail(msg="预期失败", pytrace=False)
-def test_demo1():
-    assert 1 == 0
+    def test_demo1(self):
+        assert 1 == 1
+        pytest.fail(msg="预期失败", pytrace=False)
 
 
 if __name__ == '__main__':
